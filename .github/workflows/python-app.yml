@@ -8,12 +8,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - name: checkout repo content
+      uses: actions/checkout@v2 # 
     - name: Install dependencies
       run: |
         pip install tweepy
     - name: run the bot
       run: |
-        python ./main.py
+        python main.py
       env:
         TWITTER_API_KEY : ${{ secrets.TWITTER_API_KEY }}
         TWITTER_API_SECRET_KEY : ${{ secrets.TWITTER_API_SECRET_KEY }}
