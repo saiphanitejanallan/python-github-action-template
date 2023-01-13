@@ -5,4 +5,4 @@ auth.set_access_token(os.environ['TWITTER_ACCESS_TOKEN'], os.environ['TWITTER_AC
 api = tweepy.API(auth)
 current_time = datetime.datetime.now()
 api.update_status(status= current_time)
-print("Done!")
+print("Done! ")
