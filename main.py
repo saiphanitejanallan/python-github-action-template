@@ -5,5 +5,5 @@ auth = tweepy.OAuthHandler(os.environ['TWITTER_API_KEY'], os.environ['TWITTER_AP
 auth.set_access_token(os.environ['TWITTER_ACCESS_TOKEN'], os.environ['TWITTER_ACCESS_TOKEN_SECRET'])
 api = tweepy.API(auth)
 current_time = datetime.datetime.now()
-#api.update_status(status= current_time)
-#print("Done! ")
+api.update_status(status= current_time)
+print("Done! ")
