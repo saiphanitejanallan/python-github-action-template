@@ -18,10 +18,15 @@ print(f'index : {index}')
 quote = quotes[index]
 
 # Compose the tweet text
-tweet_text = f'"{quote["text"]}" - {quote["author"]}'
-
-# Post the tweet
-api.update_status(tweet_text)
+tweet_text = f'"{quote["quote"]}" - {quote["character"]}'
+image_url = quote['image']
+filename = f"image.jpg"
+image = requests.get(image_url).content
+with open(filename, "wb") as f:
+    f.write(image)
+    media_upload = api.media_upload(filename)
+    tweet_media_id = media_upload.media_id
+api.update_status(status=tweet_text, media_ids=[tweet_media_id])
 print(f'Tweeted: {tweet_text}')
 # Increment the index and write it to the index file
 index = index + 1
