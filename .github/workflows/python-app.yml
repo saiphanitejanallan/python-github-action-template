@@ -14,6 +14,11 @@ jobs:
     - name: run the bot
       run: |
         python main.py
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add index.txt
+        git commit -m "Update file"
+        git push origin main
       env:
         TWITTER_API_KEY : ${{ secrets.TWITTER_API_KEY }}
         TWITTER_API_SECRET_KEY : ${{ secrets.TWITTER_API_SECRET_KEY }}
