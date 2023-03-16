@@ -12,7 +12,7 @@ api = tweepy.API(auth)
 with open('quotes.json', 'r') as f:
     quotes = json.load(f)
     
-index = os.environ['CURRENT_INDEX']
+index = int(os.environ['CURRENT_INDEX'])
 # Get the quote to tweet
 quote = quotes[index]
 
@@ -24,4 +24,4 @@ api.update_status(tweet_text)
 print(f'Tweeted: {tweet_text}')
 # Increment the index and write it to the index file
 index = index + 1
-os.environ['CURRENT_VALUE'] = index
+os.environ['CURRENT_VALUE'] = str(index)
