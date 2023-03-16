@@ -13,6 +13,7 @@ with open('quotes.json', 'r') as f:
     quotes = json.load(f)
     
 index = int(os.environ['CURRENT_INDEX'])
+print(f'index : {index}')
 # Get the quote to tweet
 quote = quotes[index]
 
@@ -25,3 +26,4 @@ print(f'Tweeted: {tweet_text}')
 # Increment the index and write it to the index file
 index = index + 1
 os.environ['CURRENT_VALUE'] = str(index)
+print(f'current value after increased: {os.environ['CURRENT_VALUE']})
