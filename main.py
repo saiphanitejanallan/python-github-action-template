@@ -8,10 +8,15 @@ api = tweepy.API(auth)
 #api.update_status(status= current_time)
 #print("Done! ")
 
-with open('/path/to/quotes.json', 'r') as f:
+with open('quotes.json', 'r') as f:
     quotes = json.load(f)
     
-index = int(sys.argv[1])
+index_file = 'index.txt'
+if not os.path.exists(index_file):
+    index = 0
+else:
+    with open(index_file, 'r') as f:
+        index = int(f.read())
 # Get the quote to tweet
 quote = quotes[index]
 
@@ -21,3 +26,7 @@ tweet_text = f'"{quote["text"]}" - {quote["author"]}'
 # Post the tweet
 api.update_status(tweet_text)
 print(f'Tweeted: {tweet_text}')
+# Increment the index and write it to the index file
+index = (index + 1) % len(quotes)
+with open(index_file, 'w') as f:
+    f.write(str(index))
