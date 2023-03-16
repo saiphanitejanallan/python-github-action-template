@@ -25,7 +25,7 @@ image_url = quote['image']
 filename = f"image.jpg"
 image = requests.get(image_url).content
 with open(filename, "wb") as f:
-f.write(image)
+    f.write(image)
 media_upload = api.media_upload(filename)
 tweet_media_id = media_upload.media_id
 api.update_status(status=tweet_text, media_ids=[tweet_media_id])
