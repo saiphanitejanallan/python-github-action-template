@@ -1,7 +1,7 @@
 name: Run bot
 on:
   schedule:
-  - cron: '01 * * * *'  # every 5 minutes
+  - cron: '15 * * * *'  # every 5 minutes
 jobs:
   build:
     runs-on: ubuntu-latest
