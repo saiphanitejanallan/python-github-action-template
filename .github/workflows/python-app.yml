@@ -15,7 +15,7 @@ jobs:
         pip install tweepy
     - name: run the bot
       run: |
-        CURRENT_INDEX = $((CURRENT_INDEX+1))
+        let "CURRENT_INDEX++"
         echo $CURRENT_INDEX
       env:
         TWITTER_API_KEY : ${{ secrets.TWITTER_API_KEY }}
