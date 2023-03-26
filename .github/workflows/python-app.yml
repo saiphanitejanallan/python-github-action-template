@@ -16,7 +16,8 @@ jobs:
     - name: run the bot
       run: |
         python main.py
-        echo $CURRENT_INDEX++
+        CURRENT_INDEX : CURRENT_INDEX + 1
+        echo CURRENT_INDEX
       env:
         TWITTER_API_KEY : ${{ secrets.TWITTER_API_KEY }}
         TWITTER_API_SECRET_KEY : ${{ secrets.TWITTER_API_SECRET_KEY }}
