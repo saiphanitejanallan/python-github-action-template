@@ -15,7 +15,7 @@ jobs:
         pip install tweepy
     - name: run the bot
       run: |
-        echo "TMP_VAR=$((${TMP_VAR} + 1))" >> $CURRENT_INDEX
+        echo "CURRENT_INDEX=$((${CURRENT_INDEX} + 1))" >> $GITHUB_ENV
         echo $CURRENT_INDEX
       env:
         TWITTER_API_KEY : ${{ secrets.TWITTER_API_KEY }}
