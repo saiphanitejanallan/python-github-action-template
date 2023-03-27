@@ -15,11 +15,14 @@ jobs:
         pip install tweepy
     - name: run the bot
       run: |
-        echo "CURRENT_INDEX=$((${CURRENT_INDEX} + 1))" >> $GITHUB_ENV
-        echo $CURRENT_INDEX
+        python main.py
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git config --global user.name "Github Actions"
+        git add last_tweet_index.txt
+        git commit -m "Update last tweet index"
+        git push origin main
       env:
         TWITTER_API_KEY : ${{ secrets.TWITTER_API_KEY }}
         TWITTER_API_SECRET_KEY : ${{ secrets.TWITTER_API_SECRET_KEY }}
         TWITTER_ACCESS_TOKEN : ${{ secrets.TWITTER_ACCESS_TOKEN }}
         TWITTER_ACCESS_TOKEN_SECRET : ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
-        CURRENT_INDEX : '0'
