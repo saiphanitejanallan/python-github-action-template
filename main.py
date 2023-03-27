@@ -14,10 +14,18 @@ api = tweepy.API(auth)
 with open('quotes.json', 'r') as f:
     quotes = json.load(f)
     
-index = int(os.environ['CURRENT_INDEX'])
-print(f'index : {index}')
+#index = int(os.environ['CURRENT_INDEX'])
+# Load last tweeted quote index from a file
+if os.path.exists('last_tweet_index.txt'):
+    with open('last_tweet_index.txt', 'r') as f:
+        last_tweet_index = int(f.read().strip())
+else:
+    last_tweet_index = -1
+
+next_tweet_index = (last_tweet_index + 1) 
+print(f'index : {next_tweet_index}')
 # Get the quote to tweet
-quote = quotes[index]
+quote = quotes[next_tweet_index]
 
 # Compose the tweet text
 tweet_text = f'"{quote["quote"]}" - {quote["character"]}'
@@ -30,7 +38,5 @@ media_upload = api.media_upload(filename)
 tweet_media_id = media_upload.media_id
 api.update_status(status=tweet_text, media_ids=[tweet_media_id])
 print(f'Tweeted: {tweet_text}')
-# Increment the index and write it to the index file
-index = index + 1
-os.environ['CURRENT_INDEX'] = str(index)
-print(f'current value after increased: {os.environ["CURRENT_INDEX"]}')
+with open('last_tweet_index.txt', 'w') as f:
+    f.write(str(next_tweet_index))
